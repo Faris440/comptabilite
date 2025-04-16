@@ -1,0 +1,659 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load icon %}
+
+{% block title %}{{object.get_full_name}}{% endblock title %}
+
+{% block breadcrumb %}
+{% if request.user.is_staff or request.user.assign %}
+<li class="breadcrumb-item"><a href="{{list_url}}">{{list_of}}</a></li>
+{% endif %}
+<li class="breadcrumb-item active" aria-current="page">{{object.get_full_name}}</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+{% comment %} <div class="row clearfix">
+    <div class="col-lg-4 col-md-12">
+        <div class="card">
+            <div class="m-b-20">
+                <div class="contact-grid">
+                    <div class="profile-header niss-profile-header">
+                        profile-header niss-profile-header
+                    </div>
+                    {% if object.photo %}
+                    <img src="{{object.phot.url}}" class="user-img" alt="user-photo">
+                    {% else %}
+                    <img src="{% static 'images/avatar.png' %}" class="user-img" alt="user-photo">
+                    {% endif %}
+                    <div class="user-name">
+                        {{object.grade.label|title}} {{object.get_full_name|title}}
+                    </div>
+                    <div class="name-center">{{object.matricule|upper}}</div>
+                    <div>
+                        <span class="phone">
+                            {% icon "phone" height=option_size width=option_size %}{{object.phone}}
+                        </span>
+                    </div>
+                    <div>
+                        <span class="phone">
+                            Armée / Region / Corps de troupe 
+                        </span>
+                    </div>
+                    <div>
+                        <span class="phone">
+                            Poste
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-4">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="project" aria-expanded="true">
+                <div class="row clearfix">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card project_widget">
+                            <div class="body">
+                                <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <h2 style="text-align: center;"> Informations detaillées </h2>
+                                        <div class="body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Sructure : <span class="niss-font">
+                                                        {{object.first_name}} 
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Nom et Prénom(s) : <span class="niss-font">
+                                                        {{object.first_name}} {{object.last_name}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Date et lieu de naissance :
+                                                    <span class="niss-font">
+                                                        {{object.birthdate|date:"SHORT_DATE_FORMAT"}} a {{object.birthplace}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">Matricule :
+                                                    <span class="niss-font">
+                                                        {{object.matricule}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Date d'incorporation :
+                                                    <span class="niss-font">
+                                                        {{object.incorporation_date|date:"SHORT_DATE_FORMAT"}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Position :
+                                                    <span class="niss-font">
+                                                        {{object.incorporation_date|date:"SHORT_DATE_FORMAT"}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Type de contract :
+                                                    <span class="niss-font">
+                                                        {{object.incorporation_date|date:"SHORT_DATE_FORMAT"}}
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Situation administrative :
+                                                    <span class="niss-font">
+                                                        {{object.incorporation_date|date:"SHORT_DATE_FORMAT"}}
+                                                    </span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card col-lg-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item m-l-10">
+                <a class="nav-link active" data-bs-toggle="tab" href="#affectations">Affectations</a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#mutations">
+                    Mutations
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#disponiblité">
+                    Disponiblité
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#permissions">
+                    Premissions
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#conges">
+                    Congés
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#suspensions">
+                    Suspensions
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#positions">
+                    Positions
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#punitions">
+                    Punitions
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#missions">
+                    Missions
+                </a>
+            </li>
+            <li class="nav-item m-l-10">
+                <a class="nav-link" data-bs-toggle="tab" href="#dispositions">
+                    Mise en disposition
+                </a>
+            </li>
+            <li class="nav-item m-l-10 about">
+                <a class="nav-link" data-bs-toggle="tab" href="#autorisations">
+                    Autorisation speciale
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane body active" id="affectations">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos affectations</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="mutations">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos mutations</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="disponiblité">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos disponibilités</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="conges">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos congés</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="permissions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos premissions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="punitions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos punitions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="suspensions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos suspensions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="positions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos positions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="tab-pane body" id="missions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos missions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="autorisations">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos autorisations spéciales</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="tab-pane body" id="dispositions">
+                <div class="container">
+                    <h3 class="text-decoration-underline">Liste de vos dispositions</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover js-basic-example contact_list">
+                                <thead>
+                                    <tr>
+                                        <th class="center"> Lieu </th>
+                                        <th class="center"> Période </th>
+                                        <th class="center"> Formation </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Bamako</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tankiste</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">ANKARA</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">pilote TB2</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd gradeX">
+                                        <td class="center">Ouagadougou</td>
+                                        <td class="center">2022-2023</td>
+                                        <td class="center">
+                                            <div class="badge col-green">Tireur d'elite</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+{% endblock content %}

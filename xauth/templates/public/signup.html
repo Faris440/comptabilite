@@ -1,0 +1,41 @@
+{% load static %}
+{% load formsetify %}
+
+{% block title %}Activation de compte{% endblock title %}
+
+{% block stylesheet %}
+    <link href="{% static 'formset/css/bootstrap5-extra.css' %}" rel="stylesheet">
+    <script type="module" src="{% static 'formset/js/django-formset.js' %}" nonce="{{ request.csp_nonce }}"></script>
+    {{ form.media.css }}
+{% endblock stylesheet %}
+
+{% block content %}
+    <django-formset class="login100-form validate-form" endpoint="{{ request.path }}" csrf-token="{{ csrf_token }}">
+        <!-- Titre et logo -->
+        <span class="login100-form-title p-b-10">
+            <img src="{% static 'images/burkina-faso.jpg' %}" alt="Armorie" height="50%" width="50%" class="img-fluid">
+        </span>
+        <span class="login100-form-title p-b-30">
+            Activation de compte
+        </span>
+        
+        <!-- Formulaire de saisie -->
+        {% render_form form "bootstrap" field_classes="mb-2 col-12" form_classes="row" label_classes="form-label" %}
+        
+        <!-- Bouton d'activation -->
+        <div class="container-login100-form-btn btn-bg-niss col-12 p-t-5 p-b-10">
+            {% include 'components/formset-button.html' with label="ACTIVER MON COMPTE" color="btn-success" process="spinner -> submit -> okay(2000) -> proceed !~ bummer(10000) -> scrollToError" %}
+        </div>
+
+        <!-- Lien vers la page de connexion -->
+        <div class="text-center p-t-45 p-b-20">
+            <a href="{% url 'user-login' %}" class="txt2">
+                J'ai déjà un compte actif
+            </a>
+        </div>
+    </django-formset>
+{% endblock content %}
+
+{% block javascript %}
+    {{ form.media.js }}
+{% endblock javascript %}

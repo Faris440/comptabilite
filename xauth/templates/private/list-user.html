@@ -1,0 +1,80 @@
+{% extends "models/list.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+
+{% block breadcrumb %}
+<div class="breadcrumb-container">
+  <ul class="breadcrumb">
+      <li><a href="{% url 'index-view' %}"><i class="fa fa-home"></i> Accueil</a>
+      <li><a href="{{ list_url }}">{{ list_of }}</a></li>
+      <li class="active">{{ card_title }}</li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block toolbar-plus %}
+<!-- <a href="{{ add_url }}">
+  <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="popover"
+      data-bs-content="Nouveau" data-bs-container="body" data-bs-placement="top">
+      {% icon "plus" height=option_size width=option_size %}&nbsp; Nouveau
+  </button>
+</a> -->
+{% endblock toolbar-plus %}
+
+{% block table-headers %}
+<th>Nom</th>
+<th>Email</th>
+<th>Matricule</th>
+<th>Rôle</th>
+<th>Poste</th>
+{% endblock table-headers %}
+{% include 'models/paginates.html' %}
+{% block table-rows %}
+<td>{{object.first_name|title}} {{object.last_name|title}}</td>
+<td>{{object.email}}</td>
+<td>{{object.matricule}}</td>
+<td>{{object.get_role}}</td>
+<td>Directeur</td>
+{% endblock table-rows %}
+
+{% block other-options %}
+{% if deactivate_user %}
+{% if not object.is_active %}
+<a href="{% url 'auth:user-send-key' object.id %}">
+  <button type="button" class="btn btn-md btn-outline-secondary" data-bs-toggle="popover"
+    data-bs-content="Activer le compte" data-bs-container="body" data-bs-placement="top" 
+    data-toggle="tooltip" data-placement="top" title="Activer le compte">
+    {% icon "key" height=option_size width=option_size %}
+  </button>
+</a>
+{% else %}
+<a href="{% url 'auth:user-send-key' object.id %}">
+  <button type="button" class="btn btn-md btn-outline-danger" data-bs-toggle="popover"
+    data-bs-content="Activer le compte" data-bs-container="body" data-bs-placement="top" 
+    data-toggle="tooltip" data-placement="top" title="Désactiver le compte">
+    {% icon "key" height=option_size width=option_size %}
+  </button>
+</a>
+{% endif %}
+{% endif %}
+{% if can_assign %}
+{% if object.assign %}
+<a href="{% url 'auth:assign-remove' object.id %}">
+  <button type="button" class="btn btn-md btn-outline-danger" data-bs-toggle="popover" data-bs-content="retirer un rôle"
+    data-bs-container="body" data-bs-placement="top"  data-toggle="tooltip" data-placement="top" title="retirer un rôle">
+    {% icon "briefcase" height=option_size width=option_size %}
+  </button>
+</a>
+{% else %}
+<a href="#">
+  <button type="button" class="btn btn-md btn-outline-warning" data-bs-toggle="popover" data-bs-content="Donner un rôle "
+    data-bs-container="body" data-bs-placement="top"  data-toggle="tooltip" data-placement="top" title="Donner un rôle">
+    {% icon "briefcase" height=option_size width=option_size %}
+  </button>
+</a>
+{% endif %}
+{% endif %}
+
+{% endblock other-options %}

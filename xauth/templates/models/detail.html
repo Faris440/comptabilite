@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/scroll_card2.css' %}">
+{% endblock stylesheet %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{{list_url}}">{{list_of}}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{card_title}}</li>
+{% endblock breadcrumb %}
+
+{% block title %}
+{{card_title}}
+{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{card_title}}</h2>
+        {% block more-info %}{% endblock more-info %}
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card card-scrollable">
+                        <div class="card-header">
+                            <strong class="card-title" v-if="headerText">
+                                {% block card-title %}{{object.label}}{% endblock card-title %}
+                            </strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="jumbotron scrollable">
+                                {% block card-description %}
+                                {{object.description|default_if_none:"-"|default:"-"|safe|escape}}
+                                {% endblock card-description %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <section class="card card-scrollable">
+                        <div class="card-header">
+                            <strong class="card-title">
+                                Options / Détail
+                            </strong>
+                        </div>
+                        <div class="card-body scrollable">
+                            {% block detail %}{% endblock detail %}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block more-content %}{% endblock more-content %}
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "models/list.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+{% block toolbar-plus %}
+
+{% endblock toolbar-plus %}
+
+
+{% block table-headers %}
+<th>Nom(s)</th>
+<th>Permissions</th>
+{% endblock table-headers %}
+
+{% block table-rows %}
+<td>{{object.name|default_if_none:"-"}}</td>
+<td>{{ object.permissions.all|join:", "|truncatewords:20 }}</td>
+{% endblock table-rows %}

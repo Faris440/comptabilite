@@ -1,0 +1,23 @@
+{% load humanize %}
+{% load icon %}
+
+<div class="card2 card2-stats mb-4 mb-xl-0">
+    <div class="card2-body">
+        <div class="row">
+            <div class="col">
+                <h5 class="card2-title text-uppercase text-muted mb-0">{{label}}</h5>
+                <span class="h2 font-weight-bold mb-0">{{value|intcomma}}</span>
+            </div>
+            <div class="col-auto">
+                <div class="icon icon-shape text-dark rounded-circle shadow">
+                    {% icon icon_name height=option_size width=option_size %}
+                </div>
+            </div>
+        </div>
+        <p class="mt-3 mb-0 text-muted text-sm">
+            <a href="{{stat_link}}">
+                <span class="text-nowrap">Voir plus</span>
+            </a>
+        </p>
+    </div>
+</div>

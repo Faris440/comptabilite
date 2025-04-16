@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>CA |  {% block title %}{% endblock title %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link href="{% static 'css/common.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/extra_pages.css' %}" rel="stylesheet" />
+    <style>
+        .bg-img {
+            background-color: rgb(227, 225, 225);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .btn-bg-niss {
+            background-image: url("{% static 'images/treillis.png' %}");
+        }
+    </style>
+    {% block stylesheet %}{% endblock stylesheet %}
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100 bg-img">
+            <div class="wrap-login10">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/common.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+    {% block javascript %}{% endblock javascript %}
+</body>
+
+</html>

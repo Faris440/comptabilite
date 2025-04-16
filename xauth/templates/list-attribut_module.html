@@ -1,0 +1,30 @@
+{% extends "models/list.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+{% block breadcrumb %}
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'index-view' %}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="#">Liste</a></li>
+            <li class="active">{{ object.name }}</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block table-headers %}
+<th>Enseignant</th>
+<th>Filière</th>
+<th>Module</th>
+{% endblock table-headers %}
+
+{% block table-rows %}
+<td>{{ object.user }}</td>
+<td>{{ object.nomination_type }}</td>
+
+{% endblock table-rows %}
+
+{% block javascript %}
+
+{% endblock javascript %}

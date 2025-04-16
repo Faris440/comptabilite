@@ -1,0 +1,144 @@
+{% load static %}
+{% load icon %}
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-bs-toggle="collapse"
+                data-bs-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="#" onClick="return false;" class="bars"></a>
+            <a class="navbar-brand" href="/">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="float-start">
+                <li>
+                    <a href="#" onClick="return false;" class="sidemenu-collapse">
+                        {% icon "menu" height=header_size width=header_size %}
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Full Screen Button -->
+                <!-- <li class="fullscreen">
+                    <a href="javascript:;" class="fullscreen-btn">
+                        {% icon "maximize" height=header_size width=header_size %}
+                    </a>
+                </li> -->
+                <!-- #END# Full Screen Button -->
+                <!-- #START# Notifications-->
+                <!-- <li class="dropdown">
+                    <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown" role="button">
+                        {% icon "bell" height=header_size width=header_size %}
+                        <span class="notify"></span>
+                        <span class="heartbeat"></span>
+                    </a>
+                    <ul class="dropdown-menu pullDown">
+                        <li class="header">NOTIFICATIONS</li>
+                        <li class="body">
+                            <ul class="menu">
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        <span class="table-img msg-user">
+                                            <img src="{% static 'images/logo.jpg' %}" alt="">
+                                        </span>
+                                        <span class="menu-info">
+                                            <span class="menu-title">Yems First</span>
+                                            <span class="menu-desc">
+                                                <i class="material-icons">access_time</i> il y a 14 minutes
+                                            </span>
+                                            <span class="menu-desc">Merci de consulter vos emails.</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        <span class="table-img msg-user">
+                                            <img src="{% static 'images/logo.jpg' %}" alt="">
+                                        </span>
+                                        <span class="menu-info">
+                                            <span class="menu-title">Ouattara Aminata</span>
+                                            <span class="menu-desc">
+                                                <i class="material-icons">access_time</i> il y a 22 minutes
+                                            </span>
+                                            <span class="menu-desc">Merci de consulter vos emails.</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        <span class="table-img msg-user">
+                                            <img src="{% static 'images/logo.jpg' %}" width="50%" height="50%" alt="">
+                                        </span>
+                                        <span class="menu-info">
+                                            <span class="menu-title">M. Nikiema</span>
+                                            <span class="menu-desc">
+                                                <i class="material-icons">access_time</i>il y a 1 heure
+                                            </span>
+                                            <span class="menu-desc">Merci de consulter vos emails.</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        <span class="table-img msg-user">
+                                            <img src="{% static 'images/logo.jpg' %}" alt="">
+                                        </span>
+                                        <span class="menu-info">
+                                            <span class="menu-title">Sawadogo Rahimah</span>
+                                            <span class="menu-desc">
+                                                <i class="material-icons">access_time</i> il y a 2 heures
+                                            </span>
+                                            <span class="menu-desc">Merci de consulter vos emails.</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="#" onClick="return false;">Afficher toutes les notifications</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <!-- #END# Notifications-->
+                <li class="dropdown user_profile">
+                    <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                        <img src="{% static 'images/logo.jpg' %}" width="50%" height="50%" alt="user">
+                    </div>
+                    <ul class="dropdown-menu pullDown">
+                        <li class="body">
+                            <ul class="user_dw_menu">
+                                <li>
+                                    <a href="{% url 'auth:user-detail' request.user.pk %}">
+                                        {% icon "user" height=header_size width=header_size %}&nbsp; Profil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        {% icon "message-square" height=header_size width=header_size %}&nbsp; Feedback
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="return false;">
+                                        {% icon "help-circle" height=header_size width=header_size %}&nbsp; Aide
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user-logout' %}">
+                                        {% icon "log-out" height=header_size width=header_size %}
+                                        &nbsp; Se déconnecter
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- #END# Tasks -->
+                <li class="float-end">
+                    <a href="#" onClick="return false;" class="js-right-sidebar" data-close="true">
+                        <!-- <i class="fas fa-cog"></i> -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

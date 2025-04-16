@@ -1,0 +1,49 @@
+{% block paginates %}
+{% if is_paginated %}
+<nav aria-label="paginates" class="mt-5 mb-5">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?page=1{% if 'query' in request.GET %}&query={{request.GET.query|urlencode}}{% endif %}">
+                &lt;&lt; Première
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link"
+                href="?page={{ page_obj.previous_page_number }}{% if 'query' in request.GET %}&query={{request.GET.query|urlencode}}{% endif %}">
+                &lt; Précédent
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">Précédent</a>
+        </li>
+        {% endif %}
+        <li class="page-item">
+            <a class="page-link active">
+                {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}
+            </a>
+        </li>
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?page={{ page_obj.next_page_number }}{% if 'query' in request.GET %}&query={{request.GET.query|urlencode}}{% endif %}">
+                Suivant &gt;
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link"
+                href="?page={{ page_obj.paginator.num_pages }}{% if 'query' in request.GET %}&query={{request.GET.query|urlencode}}{% endif %}">
+                Dernière &gt;&gt;
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link">Suivant</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock paginates %}

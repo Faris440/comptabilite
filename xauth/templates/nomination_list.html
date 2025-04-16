@@ -1,0 +1,74 @@
+{% extends "models/list.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+{% block breadcrumb %}
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'index-view' %}"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="#">Liste</a></li>
+            <li class="active">{{ object.name }}</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block table-headers %}
+<th>Utilisateur</th>
+<th>Type de Nomination</th>
+<th>Date de Début</th>
+<th>Date de Fin</th>
+{% endblock table-headers %}
+
+{% block table-rows %}
+<td>{{ object.user }}</td>
+<td>{{ object.nomination_type }}</td>
+<td>
+    {% if object.date_debut %}
+        {{ object.date_debut }}
+    {% else %}
+        -
+    {% endif %}
+</td>
+<td>
+    {% if object.date_fin %}
+        {{ object.date_fin }}
+    {% else %}
+        -
+    {% endif %}
+</td>
+{% endblock table-rows %}
+
+{% block other-options %}
+{% if not object.is_desactivate %}
+<a href="{% url 'auth:nominations-deactivate' object.slug|default:object.id %}">
+  <button type="button" class="btn btn-md btn-outline-success" data-bs-toggle="popover" data-bs-content="Modifier"
+      data-bs-container="body" data-bs-placement="top">
+      {% icon "x-octagon" height=option_size width=option_size %}
+  </button>
+</a>
+{% endif %}
+{% endblock other-options %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Fonction pour la recherche dans le tableau
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let searchValue = this.value.toLowerCase();
+        let rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            let code = row.cells[1].textContent.toLowerCase();
+            let departement = row.cells[2].textContent.toLowerCase();
+            let label = row.cells[3].textContent.toLowerCase();
+
+            if (code.includes(searchValue) || departement.includes(searchValue) || label.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock javascript %}

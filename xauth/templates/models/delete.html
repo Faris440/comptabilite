@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{{ list_url }}">{{ list_of }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">Suppression - {{ what_of }}</li>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<div class="card">
+	<div class="card-header">
+		<h2>{{card_title}}</h2>
+		{% block more-info %}{% endblock more-info %}
+	</div>
+
+	<div class="card-body">
+		<form method="post" class="form-horizontal">
+			{% csrf_token %}
+
+			<div class="sufee-alert alert with-close alert-danger fade show">
+				{% if form %}
+				<p>{{message}}</p>
+				{{form.as_p}}
+				{% else %}
+				<p>
+					Êtes sûre de vouloir supprimer "{{ what_to }} : {{ what_of }}"?<br>
+					<strong>La suppression est irréversible.</strong>
+				</p>
+				{% endif %}
+			</div>
+			<div class="clearfix w-100">
+				<input type="submit" role="button" class="btn btn-danger float-right" value="Confirmer">
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock content %}

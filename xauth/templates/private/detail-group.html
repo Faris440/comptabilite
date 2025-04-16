@@ -1,0 +1,23 @@
+{% extends "models/detail.html" %}
+{% load icon %}
+
+{% block card-title %}
+{{object.name}}
+{% endblock card-title %}
+
+{% block card-description %}
+{{ object.permissions.all|join:"<br>" }}
+{% endblock card-description %}
+
+{% block detail %}
+{% if perms.auth.change_group  %}
+<a class="btn btn-sm btn-outline-success m-1" href="{% url 'auth:group-update' object.id %}">
+    {% icon "edit" height="16" width="16" %}&nbsp; Modifier
+</a>
+{% endif %}
+{% if perms.auth.delete_group  %}
+<a class="btn btn-sm btn-outline-danger m-1" href="{% url 'auth:group-delete' object.id %}">
+    {% icon "trash" height="16" width="16" %}&nbsp; Supprimer
+</a>
+{% endif %}
+{% endblock detail %}

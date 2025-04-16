@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <meta name="description" content="Plateforme de souscriptions aux produits de la SONATUR">
+    <title>Erreur - {% block title %}{% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet"
+        integrity="sha384-17KtYvDhCXvJyYfwPgyWhSIfJJcvkr4QXjG8lm3vNyu6PreVycPJ9TOH3v/qIjt5" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+</head>
+
+<body>
+
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>Oops!</h1>
+                <h2>{% block content %}{% endblock content %}</h2>
+            </div>
+            <a href="/">Accueil</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

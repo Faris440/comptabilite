@@ -1,0 +1,201 @@
+.sidebar-menu li {
+    display: flex;
+    justify-content: center; /* Centrer les éléments horizontalement */
+    position: relative;
+  }
+  
+  .sidebar-menu .dropdown-menu li a {
+    /*background-color: #a91a1a;  Fond bleu */
+    /*padding: 10px 20px;  Espacement autour du texte */
+    width: 100%; /* Réduire la largeur du fond à 80% de l'élément parent */
+    margin: 0 auto;
+     /* Centrer horizontalement */
+  }
+  
+  .sidebar-menu .nav-link {
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Centrer horizontalement */
+    transform: translateX(-50%); /* Ajuster le centrage parfait */
+     /* Largeur de la bordure */
+    /*border-bottom: 1px solid #ddd;  Bordure claire entre les éléments */
+    width: auto;
+  }
+
+  .sidebar-menu .nav-link5 {
+    color: #fff !important; /* Noir foncé */
+    font-size: 14px; /* Taille de la police plus grande */
+  }
+  
+  /* .sidebar-menu .nav-link5 {
+    background-color: aquamarine;
+    width: 5px;
+  } */
+  
+  .sidebar-menu .collapse-header {
+    text-align: center;
+    padding-top: 5%;
+  }
+  
+  /* .sidebar-menu .nav-link5 {
+    background-color: #fff;
+  
+  } */
+  
+  /* Pas de bordure sur le dernier élément */
+  .sidebar-menu li:last-child::after {
+    content: none; /* Pas de bordure pour le dernier élément */
+  }
+  
+  /* Bordure entre les éléments du sous-menu */
+  .sidebar-menu .dropdown-menu {
+    display: flex;
+    justify-content: center; /* Centrer les sous-éléments */
+    position: relative;
+  }
+  
+  .sidebar-menu .dropdown-menu li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Centrer horizontalement */
+    transform: translateX(-50%); /* Ajuster le centrage parfait */
+    width: 100%; /* Largeur de la bordure pour les sous-éléments */
+    
+  }
+  
+  /* Pas de bordure sous le dernier sous-élément */
+  .sidebar-menu .dropdown-menu li:last-child::after {
+    content: none; /* Pas de bordure pour le dernier sous-élément */
+  }
+  
+  /* Effet visuel au survol des éléments */
+  
+  .sidebar-logo {
+    max-width: 95%; /* Assure que l'image ne dépasse pas de l'espace prévu */
+    height: auto; /* Conserve le ratio de l'image */
+    display: block;
+    margin: 0 auto; /* Centre l'image dans la sidebar */
+    padding: 10px 0; /* Espacement autour du logo */
+  }
+  
+  /* Rendre le texte noir pour tous les liens dans le sidebar */
+  
+  .sidebar-menu .nav-link {
+    color: #fff !important; /* Noir foncé */
+    font-size: 16px; /* Taille de la police plus grande */
+  }
+  
+  /* Ajouter un effet de survol pour améliorer la visibilité */
+  
+  
+  /* Augmenter la taille du texte des titres de sections */
+  .sidebar-menu .menu-header {
+    font-size: 15px; /* Taille du texte pour les en-têtes */
+    font-weight: bold; /* Rendre les en-têtes en gras */
+  }
+  
+  /* Optionnel : Ajuster la taille des icônes */
+  .sidebar-menu .nav-link i,
+  .sidebar-menu .dropdown-menu i {
+    font-size: 20px; /* Ajuster la taille des icônes */
+  }
+
+/* Changer la couleur lors du survol (hover) */
+.sidebar-menu .nav-link3:hover, 
+.sidebar-menu .nav-link5:hover, 
+.sidebar-menu .nav-link1:hover, 
+.sidebar-menu .nav-link2:hover {
+    /* Changer la couleur du texte */
+    background-color: #007bff; /* Ajouter une couleur de fond au survol */
+   /* border-left: 10px solid #cb0c02;   Ajoute une bordure verticale à gauche */
+}
+
+/* Ajouter un point au survol pour les éléments spécifiques */
+.sidebar-menu .nav-link3:hover::after,
+.sidebar-menu .nav-link5:hover::after,
+.sidebar-menu .nav-link1:hover::after,
+.sidebar-menu .nav-link2:hover::after {
+    content: ''; /* Vide, juste un point */
+    position: absolute;
+    left: 10px; /* Position du point à gauche de l'élément */
+    top: 50%; /* Centrer verticalement */
+    transform: translateY(-50%); /* Ajuster pour centrer parfaitement */
+    width: 8px; /* Taille du point */
+    height: 8px; /* Taille du point */
+    border-radius: 50%; /* Rendre le point rond */
+    background-color: #cb0c02; /* Couleur du point */
+}
+
+.sidebar-menu .dropdown-menu li a:hover {
+    background-color: #007bff; /* Couleur de fond des liens dans le menu déroulant au survol */
+}
+
+.main-sidebar .sidebar-menu .dropdown > a {
+  border-left: 2px solid transparent; /* Trait invisible par défaut sur le lien parent */
+  /* Décale légèrement le texte */
+}
+
+.main-sidebar .sidebar-menu .dropdown:hover > a {
+  border-left: 2px solid #cb0c02;     /* Montre un trait au survol */
+  background-color: #1365b7;
+  padding-left: 30px;          /* Changement de couleur de fond lors du survol */
+}
+
+
+/* Styles généraux pour le breadcrumb */
+.breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.breadcrumb li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.breadcrumb li a:hover {
+    text-decoration: underline;
+}
+
+/* Remplacer le séparateur par un slash */
+.breadcrumb li + li:before {
+    content: " / ";  /* Le séparateur est un slash */
+    margin-left: 10px;
+    color: #6c757d;
+}
+
+.breadcrumb li.active {
+    color: #6c757d;
+    font-weight: bold;
+}
+
+.breadcrumb li a i {
+    margin-right: 5px;
+}
+
+
+
+
+
+ /*
+.main-sidebar .sidebar-menu .dropdown-menu .nav-link5 {
+  border-left: 2px solid #3498db;  Trait vertical à gauche des sous-menus 
+  Décale légèrement le texte
+}
+ */
+/* .main-sidebar .sidebar-menu .dropdown-menu .nav-link5:hover {
+  border-left: 2px solid #2980b9; 
+  background-color: #f4f4f4;      Change la couleur de fond au survol 
+    }
+  */

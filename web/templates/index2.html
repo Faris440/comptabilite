@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}Accueil{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-4 col-sm-6">
+        <div class="info-box7 bg-c-blue order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Jour de congé restant</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-passport float-start"></i><span>358</span>
+                </h2>
+                <p class="m-b-0"><a href="{% url 'staff_administration:holiday-create' %}">Demander un congé</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <div class="info-box7 bg-c-green order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Demandes d'affectation</h6>
+                <h2 class="text-end"><i class="fas fa-plane-departure float-start"></i><span>865</span></h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <div class="info-box7 bg-c-yellow order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Soldats disponible</h6>
+                <h2 class="text-end"><i class="fas fa-chart-line float-start"></i><span>12028</span></h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>Demandes d'affectation</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Faire une demande</a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div id="project-details" class="media-list position-relative">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-xl mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Customer</th>
+                                    <th>Team</th>
+                                    <th>Progress</th>
+                                    <th>Start Date</th>
+                                    <th>Delivery Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Ecommerce website</a></td>
+                                    <td class="font-weight-600">Sarah Smith</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user9.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user5.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+1</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-cyan shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>July 19, 2018</td>
+                                    <td>March 25, 2019</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Android App</a></td>
+                                    <td class="font-weight-600">Airi Satou</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+1</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-purple shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>March 21, 2015</td>
+                                    <td>July 22, 2017</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Logo Design</a></td>
+                                    <td class="font-weight-600">Ashton Cox</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user10.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+2</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-orange shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>Feb 02, 2018</td>
+                                    <td>March 12, 2019</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>Demandes de congés/permissions</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Faire une demande</a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div id="project-details" class="media-list position-relative">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-xl mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Customer</th>
+                                    <th>Team</th>
+                                    <th>Progress</th>
+                                    <th>Start Date</th>
+                                    <th>Delivery Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Ecommerce website</a></td>
+                                    <td class="font-weight-600">Sarah Smith</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user9.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user5.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+1</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-cyan shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>July 19, 2018</td>
+                                    <td>March 25, 2019</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Android App</a></td>
+                                    <td class="font-weight-600">Airi Satou</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+1</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-purple shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>March 21, 2015</td>
+                                    <td>July 22, 2017</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Logo Design</a></td>
+                                    <td class="font-weight-600">Ashton Cox</td>
+                                    <td class="text-truncate">
+                                        <ul class="list-unstyled order-list">
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user10.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                    alt="user">
+                                            </li>
+                                            <li class="avatar avatar-sm">
+                                                <span class="badge">+2</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar l-bg-orange shadow-style width-per-45"
+                                                role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>Feb 02, 2018</td>
+                                    <td>March 12, 2019</td>
+                                    <td><a class="col-green me-2" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a> <a class="btn-action col-red"
+                                            data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/pages/charts/apexcharts.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/jquery.sparkline.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/chart.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/tb.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/charts/chartjs.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/apexcharts/apexcharts.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/dashboard/dashboard2.js' %}" nonce="{{request.csp_nonce}}"></script>
+{% endblock javascript %}

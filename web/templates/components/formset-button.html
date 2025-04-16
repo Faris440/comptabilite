@@ -1,0 +1,10 @@
+{% load icon %}
+
+<button type="button" withhold-feedback="errors" df-click="{{process}}" class="btn {{color}} btn-sm p-2">
+    <span class="dj-button-decorator">
+        {% if icon_name %}
+        {% icon "{{icon_name}}" class="dj-icon" height=option_size width=option_size %}
+        {% endif %}
+    </span>
+    &nbsp; {{label}}
+</button>

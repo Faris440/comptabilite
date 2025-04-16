@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load static %}
+{% load icon %}
+
+{% block title %}{{ object.get_full_name }}{% endblock title %}
+
+{% block stylesheet %}
+<style>
+    .profile-section {
+        background-color: #f8f9fa;
+    }
+
+    .profile-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .profile-image {
+        width: 135px;
+        height: 135px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #007bff;
+        transition: filter 0.3s ease;
+    }
+
+    .profile-image:hover {
+        filter: brightness(0.9);
+    }
+
+    .btn-custom {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .tab-content .card-body p:hover {
+        color: #0056b3;
+        transition: color 0.3s ease;
+    }
+
+    .col-lg-8:hover {
+        background-color: #f0f0f0;
+        transform: scale(1.02);
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+<section class="profile-section py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Profile Summary -->
+            <div class="col-lg-4">
+                <div class="card profile-card mb-4">
+                    <div class="profile-header">
+                        {% if object.photo %}
+                            <img src="{{ object.photo.url }}" alt="avatar" class="profile-image">
+                        {% else %}
+                            <img src="{% static 'img/profil.jpg' %}" alt="avatar" class="profile-image">
+                        {% endif %}
+                        <h5 class="mt-3">{{ object.get_full_name }}</h5>
+                        <span class="badge bg-primary">{{ object.user_type }}</span>
+                        <p class="text-muted">{{ object.grade.label }}</p>
+                        <a href="{% url 'auth:user-update-photo' object.id %}"><button class="btn btn-primary btn-custom">Modifier</button></a>    
+                        <button class="btn btn-outline-primary btn-custom ms-2">Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#etat-civil" data-bs-toggle="tab">État Civil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact" data-bs-toggle="tab">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#competences" data-bs-toggle="tab">Compétences</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content p-4">
+                        <!-- État Civil -->
+                        <div class="tab-pane fade show active" id="etat-civil">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Nom :</strong></div>
+                                    <div class="col-sm-9">{{ object.last_name }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Prénom(s) :</strong></div>
+                                    <div class="col-sm-9">{{ object.first_name }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Matricule :</strong></div>
+                                    <div class="col-sm-9">{{ object.matricule }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Date de naissance :</strong></div>
+                                    <div class="col-sm-9">{{ object.birthdate|date:"SHORT_DATE_FORMAT" }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Lieu de naissance :</strong></div>
+                                    <div class="col-sm-9">{{ object.birthplace }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="tab-pane fade" id="contact">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Email :</strong></div>
+                                    <div class="col-sm-9">{{ object.email }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Téléphone :</strong></div>
+                                    <div class="col-sm-9">{{ object.phone }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Adresse :</strong></div>
+                                    <div class="col-sm-9">{{ object.address }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compétences -->
+                        <div class="tab-pane fade" id="competences">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Université :</strong></div>
+                                    <div class="col-sm-9">{{ object.structure_origine }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Grade :</strong></div>
+                                    <div class="col-sm-9">{{ object.grade }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Statut :</strong></div>
+                                    <div class="col-sm-9">{{ object.teacher_type }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>filière(s) :</strong></div>
+                                    <div class="col-sm-9">{{ object.filiere }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3"><strong>Module(s) :</strong></div>
+                                    <div class="col-sm-9">{{ object.module }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

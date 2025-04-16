@@ -1,0 +1,102 @@
+{% load icon %}
+{% load static %}
+
+<div>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="sidebar-user-panel active">
+                    <div class="user-panel">
+                        <div class=" image">
+                            <img src="{% static 'images/avatar.png' %}" class="user-img-style" alt="User Image" />
+                        </div>
+                        <div class="text-center fw-bold p-2">
+                            <strong>Gestion des Cliniques des Armées</strong>
+                        </div>
+                    </div>
+                    <div class="profile-usertitle">
+                        <div class="sidebar-userpic-name">
+                            {{request.user.grade.label|title}} {{request.user.get_full_name|title}}
+                        </div>
+                        <div class="profile-usertitle-job ">
+                            Corps de troupe :{{request.user.structure.label|title}} <br>
+                        </div>
+                        {% if request.user.assign %}
+                        <div class="profile-usertitle-job ">
+                            Poste: {{request.user.assign.group_assign.name|upper}}
+                            ({{request.user.assign.structure.label|title}})
+                        </div>
+                        {% endif %}
+                    </div>
+                </li>
+                <li {% if "home" in request.path %} class="active" {% endif %}>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <span>ACCUEIL</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li {% if "home" in request.path %} class="active" {% endif %}>
+                            <a href="{% url 'index-view' %}">Tableau de bord</a>
+                        </li>
+                    </ul>
+                </li>
+                {% if perms.xauth.access_statistics %}
+                <li {% if "statistics" in request.path %} class="active" {% endif %}>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <span>STATISTIQUES</span>
+                    </a>
+                    <ul class="ml-menu">
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if perms.xauth.access_parameter %}
+                <li {% if "parameters/parameters" in request.path %} class="active" {% endif %}>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <span>PARAMÈTRES</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li {% if "parameters/parameters/marital-statuses/" in request.path %} class="active"
+                            {% endif %}>
+                            <a href="#">
+                                Situation matrimoniale
+                            </a>
+                        </li>
+                        <li {% if "parameters/parameters/genders/" in request.path %} class="active" {% endif %}>
+                            <a href="#">
+                                Genre
+                            </a>
+                        </li>
+                        <hr>
+                        <li {% if "parameters/parameters/clinics/" in request.path %} class="active" {% endif %}>
+                            <a href="{% url 'parameter:clinic-list' %}">
+                                Les cliniques
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% if perms.xauth.access_account %}
+                <li {% if "auth" in request.path %} class="active" {% endif %}>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <span>UTILISATEURS</span>
+                    </a>
+                    <ul class="ml-menu">
+                        {% if perms.xauth.list_user %}
+                        <li {% if "users" in request.path %} class="active" {% endif %}>
+                            <a href="{% url 'auth:user-list' %}">Les utilisateurs</a>
+                        </li>
+                        {% endif %}
+                        {% if  perms.xauth.list_group %}
+                        <li {% if "groups" in request.path %} class="active" {% endif %}>
+                            <a href="{% url 'auth:group-list' %}">Droit d'accès</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </aside>
+</div>

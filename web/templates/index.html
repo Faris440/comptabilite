@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load icon %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}Accueil{% endblock title %}
+
+{% block content %}
+
+
+<div class="row">
+
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-c-blue order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Soldats en mission interne</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-passport float-start"></i><span>358</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-c-green order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Soldats en mission extérieur</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-plane-departure float-start"></i><span>865</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-c-yellow order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Soldats disponibles</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-chart-line float-start"></i><span>12028</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-c-pink order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Soldats Radiés</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-window-close float-start"></i><span>8</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Repartition par</strong> Armée
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="recent-report__chart">
+                            <div id="chart7"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Repartition par</strong> Region militaire
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="recent-report__chart">
+                            <div id="chart8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Repartition par</strong> Genre
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="recent-report__chart">
+                            <div id="chart6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-blue order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20"> Blessés</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-passport float-start"></i><span>358</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-green order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">Tombés au champs d'honneur</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-plane-departure float-start"></i><span>120</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-orange order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">En formation</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-chart-line float-start"></i><span>12028</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="info-box7 bg-red order-info-box7">
+            <div class="info-box7-block">
+                <h6 class="m-b-20">En captivité</h6>
+                <h2 class="text-end">
+                    <i class="fas fa-window-close float-start"></i><span>2</span>
+                </h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>Donut chart</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <canvas id="chartjs_donut" style="position: relative; height:40vh; width:80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>Bar Chart</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <canvas id="chartjs_bar" style="position: relative; height:40vh; width:80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/pages/charts/apexcharts.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/jquery.sparkline.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/chart.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/tb.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/charts/chartjs.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/bundles/apexcharts/apexcharts.min.js' %}" nonce="{{request.csp_nonce}}"></script>
+<script src="{% static 'js/pages/dashboard/dashboard2.js' %}" nonce="{{request.csp_nonce}}"></script>
+{% endblock javascript %}

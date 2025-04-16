@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+<!-- <link rel="stylesheet" href="{# static 'css/searchbar.css' #}"> -->
+{% endblock stylesheet %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">{{card_title}}</li>
+{% endblock breadcrumb %}
+
+{% block title %} {{card_title}} {% endblock title %}
+
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{card_title}}</h2>
+        {% block more-info %}{% endblock more-info %}
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-row mb-5 justify-content-between">
+            <div>
+                {% include "components/searchbar.html" %}
+            </div>
+
+
+            <div>
+                {% block toolbar %}
+                {% include "components/toolbar.html" %}
+                {% block toolbar-plus %}{% endblock toolbar-plus %}
+                {% endblock toolbar %}
+            </div>
+        </div>
+        <ul class="nav nav-tabs nav-fill mb-5" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                    Militaire reconverties
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                    Demandes de reconvertion anicipée
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+                   Militaire proposable à la reconvertion
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                {% block table-headers-owner %}{% endblock table-headers-owner %}
+                                <th class="center"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list_owner %}
+                            <tr class="odd gradeX">
+                                <th scope="row" class="center">{{ forloop.counter }}</th>
+                                {% block table-rows-owner %}{% endblock table-rows-owner %}
+                                <td class="center">
+                                    <div class="btn-group" role="group" aria-label="buttons group">
+                                        {% block list-options-owner %}
+                                        {% block other-options-owner %}{% endblock other-options-owner %}
+                                        {% include 'components/list-options.html' %}
+                                        {% endblock list-options-owner %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="20">
+                                    Aucun enregistrement
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                {% block table-headers-to-process %}{% endblock table-headers-to-process %}
+                                <th class="center"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list_to_process %}
+                            <tr class="odd gradeX">
+                                <th scope="row" class="center">{{ forloop.counter }}</th>
+                                {% block table-rows-to-process %}{% endblock table-rows-to-process %}
+                                <td class="center">
+                                    <div class="btn-group" role="group" aria-label="buttons group">
+                                        {% block list-options-to-process %}
+                                        {% block other-options-to-process %}{% endblock other-options-to-process %}
+                                        {% include 'components/list-options.html' %}
+                                        {% endblock list-options-to-process %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="20">
+                                    Aucun enregistrement
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                {% block table-headers-processed %}{% endblock table-headers-processed %}
+                                <th class="center"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list_processed %}
+                            <tr class="odd gradeX">
+                                <th scope="row" class="center">{{ forloop.counter }}</th>
+                                {% block table-rows-processed %}{% endblock table-rows-processed %}
+                                <td class="center">
+                                    <div class="btn-group" role="group" aria-label="buttons group">
+                                        {% block list-options-processed %}
+                                        {% block other-options-processed %}{% endblock other-options-processed %}
+                                        {% include 'components/list-options.html' %}
+                                        {% endblock list-options-processed %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="20">
+                                    Aucun enregistrement
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block add-more %}{% endblock add-more %}
+    {% include "models/paginates.html" %}
+</div>
+{% endblock content %}

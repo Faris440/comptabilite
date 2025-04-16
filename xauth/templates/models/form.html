@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load formsetify %}
+{% load icon %}
+{% load richtext %}
+
+{% block title %} {{card_title}} {% endblock title %}
+
+{% block stylesheet %}
+<link href="{% static 'formset/css/bootstrap5-extra.css' %}" rel="stylesheet">
+{% if form_collection %}
+<link href="{% static 'formset/css/collections.css' %}" rel="stylesheet">
+{{form_collection.media.css}}
+{% else %}
+{{form.media.css}}
+{% endif %}
+<script type="module" src="{% static 'formset/js/django-formset.js' %}" nonce="{{request.csp_nonce}}"></script>
+{% endblock stylesheet %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{{list_url}}">{{list_of}}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{card_title}}</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="card mb-5">
+	<div class="card-header">
+		<h2>{{card_title}}</h2>
+		{% block more-info %}{% endblock more-info %}
+	</div>
+	<div class="card-body">
+		<div>
+			<django-formset endpoint="{{request.path}}" csrf-token="{{csrf_token}}"
+				withhold-feedback="errors warnings success">
+				{% if form_collection %}
+				{{form_collection}}
+				{% else %}
+				{% render_form form  %}
+				{% endif %}
+				<div class="offset-sm-3 mt-5 mb-5">
+					{% include 'components/formset-button.html' with label="Enregistrer" color="btn-success" icon_name='"save"' process="spinner -> submit -> okay(2000) -> proceed !~ bummer(10000) -> scrollToError" %}
+					{% if can_rerender %}
+					{% include 'components/formset-button.html' with label="Enregistrer et Continuer" color="btn-info" icon_name='"refresh-cw"' process="spinner -> submit -> okay(2000) -> proceed -> reload !~ bummer(10000)" %}
+					{% endif %}
+					{% include 'components/formset-button.html' with label="Annuler" color="btn-warning" icon_name='"x"' process="spinner -> reset -> proceed('{{request.META.HTTP_REFERER}}')" %}
+				</div>
+			</django-formset>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{% if form_collection %}
+{{form_collection.media.js}}
+{% else %}
+{{form.media.js}}
+{% endif %}
+{% endblock javascript %}

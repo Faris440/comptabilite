@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Récapitulatif de l'inscription</h1>
+
+  <form method="POST" action="{% url 'user_create_submit' %}">
+    {% csrf_token %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Champ</th>
+          <th>Valeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nom</td>
+          <td>{{ form_data.first_name }}</td>
+        </tr>
+        <tr>
+          <td>Prénom</td>
+          <td>{{ form_data.last_name }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ form_data.email }}</td>
+        </tr>
+        <tr>
+          <td>Téléphone</td>
+          <td>{{ form_data.phone }}</td>
+        </tr>
+        <tr>
+          <td>Adresse</td>
+          <td>{{ form_data.address }}</td>
+        </tr>
+        <!-- Ajoutez d'autres champs ici selon votre formulaire -->
+      </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success">Confirmer l'inscription</button>
+    <a href="{% url 'user_create' %}" class="btn btn-warning">Modifier</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% load icon %}
+
+<div class="d-flex flex-row mb-5 justify-content-between btn-group">
+    {% if can_add %}
+    {% if multi_add %}
+    <div class="dropdown">
+        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false" data-bs-toggle="popover" data-bs-content="Nouveau" data-bs-container="body"
+            data-bs-placement="top">
+            {% icon "plus-square" height=option_size width=option_size %}&nbsp; Nouveau
+        </button>
+        <ul class="dropdown-menu">
+            {% for link in links %}
+            <li><a class="dropdown-item" href="{{link.url}}">{{link.label}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div>
+        <a href="{{ add_url }}">
+            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="popover"
+                data-bs-content="Nouveau" data-bs-container="body" data-bs-placement="top">
+                {% icon "plus" height=option_size width=option_size %}&nbsp; Nouveau
+            </button>
+        </a>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if can_export %}
+    <div>
+        <a href="{{ export_url }}">
+            <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="popover"
+                data-bs-content="Exporter" data-bs-container="body" data-bs-placement="top">
+                {% icon "download" height=option_size width=option_size %}&nbsp; Exporter
+            </button>
+        </a>
+    </div>
+    {% endif %}
+    {% if can_print %}
+    <div>
+        <a href="{{ print_url }}">
+            <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="popover"
+                data-bs-content="Exporter" data-bs-container="body" data-bs-placement="top">
+                {% icon "print" height=option_size width=option_size %}&nbsp; Imprimer
+            </button>
+        </a>
+    </div>
+    {% endif %}
+    {% if can_import %}
+    <div>
+        <a href="{{ import_url }}">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="popover"
+                data-bs-content="Import" data-bs-container="body" data-bs-placement="top">
+                {% icon "upload" height=option_size width=option_size %}&nbsp; Importer
+            </button>
+        </a>
+    </div>
+    <div>
+        <a href="{{ model_url }}">
+            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="popover"
+                data-bs-content="Exporter une feuille vide" data-bs-container="body" data-bs-placement="top">
+                {% icon "download-cloud" height=option_size width=option_size %}&nbsp; Modèle
+            </button>
+        </a>
+
+    </div>
+
+    {% endif %}
+</div>

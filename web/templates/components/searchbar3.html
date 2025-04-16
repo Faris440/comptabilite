@@ -1,0 +1,19 @@
+{% load icon %}
+
+{% if search_url %}
+<form class="row domain-search ">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="input-group">
+                <input type="search" class="form-control">
+                <span class="input-group-addon"><input type="submit" value="Search" class="btn btn-primary"></span>
+            </div>
+        </div>
+    </div>
+</form>
+{% endif %}
+
+
+{% comment %}
+{% if 'query' in request.GET %} value="{{request.GET.query}}" {% endif %}
+{% endcomment %}

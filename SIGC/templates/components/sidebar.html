@@ -1,0 +1,94 @@
+{% load static %}
+
+<div class="sidebar">
+    <nav class="navbar bg-white navbar-light d-flex justify-content-center" id="navv">
+        <div class="d-grid align-items-center mb-4">
+            <div class="position-relative d-flex justify-content-center">
+                <img class="rounded-circle" src="{% static 'img/logo1.png' %}" alt="Photo de profil" style="width: 80px; height: 80px;">
+            </div>
+            <div class="text-center fw-bold p-2">
+                <strong>Système Intégré de Gestion et de vente des Pharmacie</strong><br>( Burkina Faso )
+            </div>
+            <div class="text-center p-2">
+                <strong class="user-full-name">{{ request.user.get_full_name }}</strong>
+            </div>
+        </div>
+
+        <div class="navbar-nav w-100">
+            <a href="{% url 'index-view' %}" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>ACCUEIL</a>
+
+            
+            <!-- Comptabilité Générale -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-book me-2"></i>COMPTABILITÉ</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Plan Comptable</a>
+                    <a href="#" class="dropdown-item">Journaux</a>
+                    <a href="#" class="dropdown-item">Écritures</a>
+                </div>
+            </div>
+
+            <!-- Facturation -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-file-invoice-dollar me-2"></i>FACTURATION</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Clients</a>
+                    <a href="#" class="dropdown-item">Fournisseurs</a>
+                    <a href="#" class="dropdown-item">Factures</a>
+                    <a href="#" class="dropdown-item">Devis</a>
+                </div>
+            </div>
+
+            <!-- Trésorerie -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-wallet me-2"></i>TRÉSORERIE</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Banques</a>
+                    <a href="#" class="dropdown-item">Caisses</a>
+                    <a href="#" class="dropdown-item">Opérations</a>
+                </div>
+            </div>
+
+            <!-- Comptabilité Analytique -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-pie me-2"></i>ANALYTIQUE</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Budgets</a>
+                    <a href="#" class="dropdown-item">Centres de coûts</a>
+                </div>
+            </div>
+
+            <!-- Rapports -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-file-alt me-2"></i>RAPPORTS</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Bilan</a>
+                    <a href="#" class="dropdown-item">Compte de Résultat</a>
+                    <a href="#" class="dropdown-item">Grand Livre</a>
+                    <a href="#" class="dropdown-item">Balance</a>
+                    <a href="#" class="dropdown-item">Journaux</a>
+                </div>
+            </div>
+                        <!-- Rapports -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-sliders-h me-2"></i>PARAMÉTRAGE</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Exercice comptable</a>
+                    <a href="#" class="dropdown-item">taxes</a>
+                    <a href="#" class="dropdown-item">devises</a>
+                    <a href="#" class="dropdown-item">catégories</a>
+                    <a href="#" class="dropdown-item">Autres</a>
+                </div>
+            </div>
+            <!-- Rapports -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user-shield me-2"></i>UTILISATEURS</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="#" class="dropdown-item">Les utilisateurs</a>
+                    <a href="#" class="dropdown-item">Droits d'accès</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
