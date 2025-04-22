@@ -1,13 +1,13 @@
 {% load static %}
 
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
     <nav class="navbar bg-white navbar-light d-flex justify-content-center" id="navv">
         <div class="d-grid align-items-center mb-4">
             <div class="position-relative d-flex justify-content-center">
                 <img class="rounded-circle" src="{% static 'img/logo1.png' %}" alt="Photo de profil" style="width: 80px; height: 80px;">
             </div>
             <div class="text-center fw-bold p-2">
-                <strong>Système Intégré de Gestion et de vente des Pharmacie</strong><br>( Burkina Faso )
+                <strong>Système Intégré de Gestion de Comptabilité et de Logistique</strong><br>( Burkina Faso )
             </div>
             <div class="text-center p-2">
                 <strong class="user-full-name">{{ request.user.get_full_name }}</strong>
