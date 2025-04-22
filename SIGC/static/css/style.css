@@ -198,7 +198,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background:rgb(255, 255, 255);
     border-radius: 40px;
 }
 
@@ -216,6 +216,7 @@
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     transition: .5s;
+    
 }
 
 .sidebar .navbar .dropdown-toggle[aria-expanded=true]::after {
@@ -338,4 +339,8 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+
+.dropdown-menu{
+    margin-left: 50px; 
 }

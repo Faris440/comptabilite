@@ -1,0 +1,42 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row bg-light rounded align-items-center justify-content-between px-4 py-2 mb-4">
+        <div class="col-sm-6">
+            <h4 class="mb-0 text-dark">{{ title }}</h4>
+        </div>
+        <div class="col-sm-6 text-end">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-end mb-0">
+                    {% for item in breadcrumb_items %}
+                        {% if forloop.last %}
+                            <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+                        {% else %}
+                            <li class="breadcrumb-item">
+                                <a href="{{ item.url }}">{{ item.name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      {% if icon %}
+        <li class="breadcrumb-item">
+          <i class="{{ icon }}"></i>
+        </li>
+      {% endif %}
+  
+      {% for item in breadcrumb_items %}
+        {% if forloop.last %}
+          <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+        {% else %}
+          <li class="breadcrumb-item"><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+   -->
